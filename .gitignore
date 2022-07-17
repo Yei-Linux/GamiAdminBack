@@ -1,0 +1,4 @@
+node_modules
+main/environments/.env.development
+main/environments/.env.production
+main/environments/.env.test
