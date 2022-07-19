@@ -4,5 +4,5 @@ export interface DatabaseStrategy<T> {
   connect: (url: string, options: Record<string, unknown>) => T;
 }
 
-export type TMongooseConnection = Promise<typeof mongoose>;
+export type TMongooseConnection = void;
 export type TDatabaseConnection = TMongooseConnection;

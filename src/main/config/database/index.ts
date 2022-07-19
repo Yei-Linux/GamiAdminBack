@@ -14,9 +14,12 @@ class Context<T> {
     options: Record<string, unknown>
   ): T | undefined {
     if (!this.strategy) return;
-    return this.strategy.connect(url, options);
+    this.strategy.connect(url, options);
   }
 }
-const databaseContext = new Context<TDatabaseConnection>();
-databaseContext.setStrategy(new MongooseStrategy());
-databaseContext.executeStrategy(DatabaseConfig.url, DatabaseConfig.options);
+
+export const executeDB = () => {
+  const databaseContext = new Context<TDatabaseConnection>();
+  databaseContext.setStrategy(new MongooseStrategy());
+  databaseContext.executeStrategy(DatabaseConfig.url, DatabaseConfig.options);
+};
