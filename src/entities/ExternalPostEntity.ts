@@ -4,19 +4,40 @@ import Entity from "../pojos/Entity";
 export const buildExternalPostEntity = <T>(tagEntity: T) => {
   const ExternalPostTypes = ["JOB", "BLOG"];
   const schema = {
-    banner: String,
-    title: String,
-    post: String,
-    postedAt: Date,
-    externalUrl: String,
+    banner: {
+      type: String,
+      required: false,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    post: {
+      type: String,
+      required: true,
+    },
+    postedAt: {
+      type: Date,
+      required: true,
+    },
+    externalUrl: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       enum: ExternalPostTypes,
     },
 
     user: {
-      user: String,
-      photo: String,
+      user: {
+        type: String,
+        required: true,
+      },
+      photo: {
+        type: String,
+        required: false,
+      },
     },
     tags: [
       {
@@ -25,9 +46,18 @@ export const buildExternalPostEntity = <T>(tagEntity: T) => {
       },
     ],
 
-    createdAt: Date,
-    updatedAt: Date,
-    deletedAt: Date,
+    createdAt: {
+      type: Date,
+      required: false,
+    },
+    updatedAt: {
+      type: Date,
+      required: false,
+    },
+    deletedAt: {
+      type: Date,
+      required: false,
+    },
   };
 
   const entity = new Entity(schema, "externalPost");

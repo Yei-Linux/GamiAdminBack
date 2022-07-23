@@ -23,4 +23,8 @@ export const DatabaseConfig = ({
     dbName: dbname,
   },
   url: `mongodb://${username}:${password}@${host}:${port}`,
+  config: {
+    enableSchemasUpdated: true,
+    enableMigrations: false,
+  },
 });

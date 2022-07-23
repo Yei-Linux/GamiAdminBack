@@ -3,12 +3,27 @@ import Entity from "../pojos/Entity";
 
 export const buildTagEntity = <T>() => {
   const schema = {
-    title: String,
-    description: String,
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
 
-    createdAt: Date,
-    updatedAt: Date,
-    deletedAt: Date,
+    createdAt: {
+      type: Date,
+      required: false,
+    },
+    updatedAt: {
+      type: Date,
+      required: false,
+    },
+    deletedAt: {
+      type: Date,
+      required: false,
+    },
   };
 
   const entity = new Entity(schema, "tag");

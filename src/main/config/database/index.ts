@@ -1,27 +1,43 @@
+import { migrations } from "../../../migrations";
 import singletonLogger from "../Logger";
 import { DatabaseConfig } from "./config";
 import MongooseStrategy from "./MongooseStrategy";
-import { DatabaseStrategy, TDatabaseConnection } from "./types";
+import {
+  DatabaseStrategy,
+  TDatabaseConnection,
+  TDatabaseMigrations,
+} from "./types";
 
 class Context<T> {
-  private strategy: DatabaseStrategy<TDatabaseConnection> | null = null;
+  private strategy: DatabaseStrategy<
+    TDatabaseConnection,
+    TDatabaseMigrations
+  > | null = null;
 
-  setStrategy(databaseStrategy: DatabaseStrategy<TDatabaseConnection>) {
+  setStrategy(
+    databaseStrategy: DatabaseStrategy<TDatabaseConnection, TDatabaseMigrations>
+  ) {
     this.strategy = databaseStrategy;
   }
 
   async executeStrategy(
     url: string,
-    options: Record<string, unknown>
+    options: Record<string, unknown>,
+    { enableSchemasUpdated, enableMigrations }: Record<string, boolean>
   ): Promise<T | undefined> {
     try {
       if (!this.strategy) return;
       await this.strategy.connect(url, options);
-      this.strategy.runSchemas();
+      if (enableSchemasUpdated) {
+        this.strategy.runSchemas();
+      }
+      if (enableMigrations) {
+        await this.strategy.runMigrations(migrations);
+      }
     } catch (error) {
       singletonLogger.log({
         level: "error",
-        message: `Failed on stablish connection`,
+        message: `${error}`,
       });
     }
   }
@@ -36,7 +52,7 @@ export const executeDB = () => {
     DATABASE_NAME,
   } = process.env;
 
-  const { url, options } = DatabaseConfig({
+  const { url, options, config } = DatabaseConfig({
     username: DATABASE_USERNAME,
     password: DATABASE_PASSWORD,
     host: DATABASE_HOST,
@@ -46,5 +62,5 @@ export const executeDB = () => {
 
   const databaseContext = new Context<TDatabaseConnection>();
   databaseContext.setStrategy(new MongooseStrategy());
-  databaseContext.executeStrategy(url, options);
+  databaseContext.executeStrategy(url, options, config);
 };
