@@ -1,9 +1,14 @@
-import app from "../config/app";
-import singletonLogger from "../config/Logger";
+import { config as dotenvConfig } from "dotenv";
+import { environmentValidator } from "../../helpers/environment-validator";
+import { app } from "../config/apps";
+import { executeDB } from "../config/database";
 
-app.listen(process.env.SERVER_PORT, () => {
-  singletonLogger.log({
-    level: "info",
-    message: `Your server was setup successfull in port: ${process.env.SERVER_PORT}`,
+(async () => {
+  environmentValidator();
+  dotenvConfig({
+    path: `./src/main/environments/.env.${process.env.NODE_ENV}`,
   });
-});
+  await executeDB();
+
+  app();
+})();

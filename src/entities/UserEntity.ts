@@ -60,6 +60,6 @@ export const buildUserEntity = <T>(userTypeEntity: T) => {
     },
   };
 
-  const entity = new Entity(schema, "user");
+  const entity = new Entity(schema, "users");
   return entity.create();
 };

@@ -25,6 +25,6 @@ export const buildSnippetEntity = () => {
     },
   };
 
-  const entity = new Entity(schema, "snippet");
+  const entity = new Entity(schema, "snippets");
   return entity.create();
 };

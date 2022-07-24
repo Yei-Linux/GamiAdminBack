@@ -53,6 +53,6 @@ export const buildPostEntity = <T, U, V>(
     },
   };
 
-  const entity = new Entity(schema, "post");
+  const entity = new Entity(schema, "posts");
   return entity.create();
 };

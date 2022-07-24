@@ -25,6 +25,6 @@ export const buildUserTypeEntity = <T>() => {
     },
   };
 
-  const entity = new Entity(schema, "userType");
+  const entity = new Entity(schema, "userTypes");
   return entity.create();
 };

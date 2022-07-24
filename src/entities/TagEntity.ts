@@ -26,6 +26,6 @@ export const buildTagEntity = <T>() => {
     },
   };
 
-  const entity = new Entity(schema, "tag");
+  const entity = new Entity(schema, "tags");
   return entity.create();
 };

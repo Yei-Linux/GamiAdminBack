@@ -1,0 +1,5 @@
+{
+    "migrationsDir": "src/cli-migrations",
+    "uri": "mongodb://jesus:123@127.0.0.1:27017/gami_admin?authSource=admin",
+    "migrationsCollection": "changelog_migration"
+}

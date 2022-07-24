@@ -1,4 +1,4 @@
-import { migrations } from "../../../migrations";
+import { migrations } from "../../../initial-data";
 import singletonLogger from "../Logger";
 import { DatabaseConfig } from "./config";
 import MongooseStrategy from "./MongooseStrategy";
@@ -43,7 +43,7 @@ class Context<T> {
   }
 }
 
-export const executeDB = () => {
+export const executeDB = async () => {
   const {
     DATABASE_USERNAME,
     DATABASE_PASSWORD,
@@ -62,5 +62,5 @@ export const executeDB = () => {
 
   const databaseContext = new Context<TDatabaseConnection>();
   databaseContext.setStrategy(new MongooseStrategy());
-  databaseContext.executeStrategy(url, options, config);
+  await databaseContext.executeStrategy(url, options, config);
 };

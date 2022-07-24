@@ -32,6 +32,7 @@ class MongooseStrategy
         message: `Connection done succesfull!`,
       });
     } catch (error) {
+      console.log(error);
       throw new Error("Failed on stablish connection to mongodb!");
     }
   }

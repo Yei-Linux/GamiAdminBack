@@ -60,6 +60,6 @@ export const buildExternalPostEntity = <T>(tagEntity: T) => {
     },
   };
 
-  const entity = new Entity(schema, "externalPost");
+  const entity = new Entity(schema, "externalPosts");
   return entity.create();
 };
