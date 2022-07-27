@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import {
-  buildExternalPostEntity,
-  buildPostEntity,
-  buildSnippetEntity,
-  buildTagEntity,
-  buildUserEntity,
-  buildUserTypeEntity,
+  externalPostEntity,
+  postEntity,
+  snippetEntity,
+  tagEntity,
+  userEntity,
+  userTypeEntity,
 } from "../../../entities";
-import Entity from "../../../pojos/Entity";
+import MongooseEntity from "../../../pojos/MongooseEntity";
 import singletonLogger from "../Logger";
 import {
   DatabaseStrategy,
@@ -16,9 +16,10 @@ import {
 } from "./types";
 
 class MongooseStrategy
-  implements DatabaseStrategy<TMongooseConnection, TMongooseMigrations>
+  implements
+    DatabaseStrategy<TMongooseConnection, TMongooseMigrations, MongooseEntity>
 {
-  entities: Record<string, Entity> = {};
+  entities: Record<string, MongooseEntity> = {};
 
   async connect(
     url: string,
@@ -39,29 +40,13 @@ class MongooseStrategy
 
   runSchemas() {
     try {
-      const userTypeEntity = buildUserTypeEntity();
-      const userEntity = buildUserEntity(userTypeEntity.EntityDB);
-      const tagEntity = buildTagEntity();
-      const snippetEntity = buildSnippetEntity();
-      const postEntity = buildPostEntity(
-        userEntity.EntityDB,
-        tagEntity.EntityDB,
-        snippetEntity.EntityDB
-      );
-      const externalPostEntity = buildExternalPostEntity(tagEntity.EntityDB);
-
-      singletonLogger.log({
-        level: "info",
-        message: "Schemas updated!",
-      });
-
       this.entities = {
-        userTypeEntity,
-        userEntity,
-        tagEntity,
-        snippetEntity,
-        postEntity,
-        externalPostEntity,
+        userTypeEntity: userTypeEntity,
+        userEntity: userEntity,
+        tagEntity: tagEntity,
+        snippetEntity: snippetEntity,
+        postEntity: postEntity,
+        externalPostEntity: externalPostEntity,
       };
     } catch (error) {
       this.entities = {};

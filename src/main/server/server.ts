@@ -9,6 +9,5 @@ import { executeDB } from "../config/database";
     path: `./src/main/environments/.env.${process.env.NODE_ENV}`,
   });
   await executeDB();
-
   app();
 })();

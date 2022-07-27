@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import Entity from "../pojos/Entity";
+import MongooseEntity from "../pojos/MongooseEntity";
 
 export const buildPostEntity = <T, U, V>(
   userEntity: T,
@@ -53,6 +53,6 @@ export const buildPostEntity = <T, U, V>(
     },
   };
 
-  const entity = new Entity(schema, "posts");
-  return entity.create();
+  const entity = new MongooseEntity(schema, "posts");
+  return entity.createModel();
 };

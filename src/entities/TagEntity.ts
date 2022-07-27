@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import Entity from "../pojos/Entity";
+import MongooseEntity from "../pojos/MongooseEntity";
 
 export const buildTagEntity = <T>() => {
   const schema = {
@@ -26,6 +26,6 @@ export const buildTagEntity = <T>() => {
     },
   };
 
-  const entity = new Entity(schema, "tags");
-  return entity.create();
+  const entity = new MongooseEntity(schema, "tags");
+  return entity.createModel();
 };

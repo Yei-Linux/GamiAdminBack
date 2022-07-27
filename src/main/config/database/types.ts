@@ -1,7 +1,5 @@
-import Entity from "../../../pojos/Entity";
-
-export interface DatabaseStrategy<T, U> {
-  entities: Record<string, Entity>;
+export interface DatabaseStrategy<T, U, EntityType> {
+  entities: Record<string, EntityType>;
   connect: (url: string, options: Record<string, unknown>) => T;
   runSchemas: () => void;
   runMigrations: (migrations: U) => void;

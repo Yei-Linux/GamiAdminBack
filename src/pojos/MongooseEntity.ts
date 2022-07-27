@@ -1,31 +1,25 @@
 import mongoose, { Model, Schema } from "mongoose";
+import BaseEntity, { TOptions, TSchema } from "./BaseEntity";
 
-type TSchema = Record<string, unknown>;
-type TOptions = Record<string, unknown>;
-
-class Entity {
-  schema: TSchema = {};
-  options: TOptions = {
-    autoCreate: true,
-  };
-  name: string = "";
-  EntityDB: Model<any> | null = null;
-
-  constructor(schema: TSchema, name: string, options?: TOptions | null) {
-    this.schema = schema;
-    this.name = name;
-    if (options != null) this.options = options;
+class MongooseEntity extends BaseEntity<Model<any>> {
+  constructor(
+    schema: TSchema,
+    name: string,
+    options: TOptions | null = {
+      autoCreate: true,
+    }
+  ) {
+    super(schema, name, options);
   }
 
-  create() {
+  public createModel() {
     const baseSchema = new Schema(this.schema, this.options);
     const EntityDBResult = mongoose.model(this.name, baseSchema);
     this.EntityDB = EntityDBResult;
 
     return this;
   }
-
-  async add(fields: Record<string, any>) {
+  public async save(fields: Record<string, any>) {
     if (!this.EntityDB) return;
 
     const newEntity = new this.EntityDB(fields);
@@ -33,16 +27,14 @@ class Entity {
 
     return saved;
   }
-
-  async addMany(items: Array<Record<string, any>>) {
+  public async addMany(items: Record<string, any>[]) {
     if (!this.EntityDB) return;
 
     const saved = await this.EntityDB.insertMany(items);
 
     return saved;
   }
-
-  async updateMany(items: Array<Record<string, any>>) {
+  public async updateMany(items: Record<string, any>[]) {
     if (!this.EntityDB) return;
 
     const itemsBulks = items.map((item: Record<string, any>) => ({
@@ -61,4 +53,4 @@ class Entity {
   }
 }
 
-export default Entity;
+export default MongooseEntity;

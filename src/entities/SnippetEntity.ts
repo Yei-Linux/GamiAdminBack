@@ -1,4 +1,4 @@
-import Entity from "../pojos/Entity";
+import MongooseEntity from "../pojos/MongooseEntity";
 
 export const buildSnippetEntity = () => {
   const schema = {
@@ -25,6 +25,6 @@ export const buildSnippetEntity = () => {
     },
   };
 
-  const entity = new Entity(schema, "snippets");
-  return entity.create();
+  const entity = new MongooseEntity(schema, "snippets");
+  return entity.createModel();
 };

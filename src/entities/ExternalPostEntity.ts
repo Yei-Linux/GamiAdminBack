@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import Entity from "../pojos/Entity";
+import MongooseEntity from "../pojos/MongooseEntity";
 
 export const buildExternalPostEntity = <T>(tagEntity: T) => {
   const ExternalPostTypes = ["JOB", "BLOG"];
@@ -60,6 +60,6 @@ export const buildExternalPostEntity = <T>(tagEntity: T) => {
     },
   };
 
-  const entity = new Entity(schema, "externalPosts");
-  return entity.create();
+  const entity = new MongooseEntity(schema, "externalPosts");
+  return entity.createModel();
 };

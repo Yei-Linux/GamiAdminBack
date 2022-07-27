@@ -1,4 +1,5 @@
 import { migrations } from "../../../initial-data";
+import MongooseEntity from "../../../pojos/MongooseEntity";
 import singletonLogger from "../Logger";
 import { DatabaseConfig } from "./config";
 import MongooseStrategy from "./MongooseStrategy";
@@ -9,15 +10,24 @@ import {
 } from "./types";
 
 class Context<T> {
-  private strategy: DatabaseStrategy<
+  private _strategy: DatabaseStrategy<
     TDatabaseConnection,
-    TDatabaseMigrations
+    TDatabaseMigrations,
+    MongooseEntity
   > | null = null;
 
   setStrategy(
-    databaseStrategy: DatabaseStrategy<TDatabaseConnection, TDatabaseMigrations>
+    databaseStrategy: DatabaseStrategy<
+      TDatabaseConnection,
+      TDatabaseMigrations,
+      MongooseEntity
+    >
   ) {
-    this.strategy = databaseStrategy;
+    this._strategy = databaseStrategy;
+  }
+
+  get strategy() {
+    return this._strategy;
   }
 
   async executeStrategy(
@@ -26,13 +36,13 @@ class Context<T> {
     { enableSchemasUpdated, enableMigrations }: Record<string, boolean>
   ): Promise<T | undefined> {
     try {
-      if (!this.strategy) return;
-      await this.strategy.connect(url, options);
+      if (!this._strategy) return;
+      await this._strategy.connect(url, options);
       if (enableSchemasUpdated) {
-        this.strategy.runSchemas();
+        this._strategy.runSchemas();
       }
       if (enableMigrations) {
-        await this.strategy.runMigrations(migrations);
+        await this._strategy.runMigrations(migrations);
       }
     } catch (error) {
       singletonLogger.log({
@@ -63,4 +73,8 @@ export const executeDB = async () => {
   const databaseContext = new Context<TDatabaseConnection>();
   databaseContext.setStrategy(new MongooseStrategy());
   await databaseContext.executeStrategy(url, options, config);
+
+  const globalEntities = databaseContext.strategy?.entities;
+
+  return { globalEntities };
 };
