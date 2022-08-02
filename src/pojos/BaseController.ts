@@ -15,10 +15,10 @@ type TJsonResponse = {
 
 export abstract class BaseController extends MessagesController {
   public static jsonResponse({ res, code, bodyResponse }: TJsonResponse) {
-    res.send(code).json(bodyResponse);
+    res.status(code).json(bodyResponse);
   }
 
-  public fail(res: Express.Response, error: Error | string): void {
+  public fail(res: Express.Response, error: Error | string) {
     BaseController.jsonResponse({
       res,
       code: 500,
@@ -30,7 +30,6 @@ export abstract class BaseController extends MessagesController {
 
   public ok<T>(res: Express.Response, dto: T) {
     if (!!dto) {
-      res.type("application/json");
       BaseController.jsonResponse({
         res,
         code: 200,
@@ -53,7 +52,7 @@ export abstract class BaseController extends MessagesController {
         level: "error",
         message: `[BaseController]: Uncaught controller error`,
       });
-      this.fail(params.res, error);
+      this.fail(params.res, `[BaseController]: Uncaught controller error`);
     }
   }
 }

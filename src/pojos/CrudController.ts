@@ -11,14 +11,14 @@ export interface ICrudController {
 }
 
 class CrudController extends BaseController implements ICrudController {
-  entity: MongooseEntity;
+  public entity: MongooseEntity;
 
   constructor(entity: MongooseEntity) {
     super();
     this.entity = entity;
   }
 
-  async create(req: Express.Request, res: Express.Response) {
+  create = async (req: Express.Request, res: Express.Response) => {
     try {
       const documentSaved = await this.entity.save(req.body);
 
@@ -33,11 +33,11 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, "Document could not be saved succesfull");
     }
-  }
-  read: (req: Express.Request, res: Express.Response) => {};
-  readById: (req: Express.Request, res: Express.Response) => {};
-  update: (req: Express.Request, res: Express.Response) => {};
-  delete: (req: Express.Request, res: Express.Response) => {};
+  };
+  read = (req: Express.Request, res: Express.Response) => {};
+  readById = (req: Express.Request, res: Express.Response) => {};
+  update = (req: Express.Request, res: Express.Response) => {};
+  delete = (req: Express.Request, res: Express.Response) => {};
 }
 
 export default CrudController;

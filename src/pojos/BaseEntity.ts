@@ -14,9 +14,11 @@ abstract class BaseEntity<ModelType> {
   }
 
   protected abstract createModel(): this;
-  protected abstract save(fields: Record<string, any>);
-  protected abstract addMany(items: Array<Record<string, any>>);
-  protected abstract updateMany(items: Array<Record<string, any>>);
+  protected abstract save(fields: Record<string, any>): Promise<any>;
+  protected abstract addMany(items: Array<Record<string, any>>): Promise<any>;
+  protected abstract updateMany(
+    items: Array<Record<string, any>>
+  ): Promise<any>;
 }
 
 export default BaseEntity;
