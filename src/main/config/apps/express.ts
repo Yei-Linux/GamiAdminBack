@@ -1,5 +1,5 @@
 import express from "express";
-import { TagRouter } from "../../../routes";
+import { TagRouter, UserTypeRouter } from "../../../routes";
 import singletonLogger from "../Logger";
 
 export const expressApp = () => {
@@ -9,13 +9,16 @@ export const expressApp = () => {
     app.use(jsonParser);
 
     app.use("/tags", TagRouter);
+    app.use("/user-types", UserTypeRouter);
 
-    app.listen(process.env.SERVER_PORT, () => {
-      singletonLogger.log({
-        level: "info",
-        message: `Your server was setup successfull in port: ${process.env.SERVER_PORT}`,
+    if (process.env.IS_TESTING !== "ok") {
+      app.listen(process.env.SERVER_PORT, () => {
+        singletonLogger.log({
+          level: "info",
+          message: `Your server was setup successfull in port: ${process.env.SERVER_PORT}`,
+        });
       });
-    });
+    }
 
     return app;
   } catch (error) {

@@ -34,10 +34,70 @@ class CrudController extends BaseController implements ICrudController {
       this.fail(res, "Document could not be saved succesfull");
     }
   };
-  read = (req: Express.Request, res: Express.Response) => {};
-  readById = (req: Express.Request, res: Express.Response) => {};
-  update = (req: Express.Request, res: Express.Response) => {};
-  delete = (req: Express.Request, res: Express.Response) => {};
+  read = async (req: Express.Request, res: Express.Response) => {
+    try {
+      const documents = await this.entity.findAll();
+
+      BaseController.jsonResponse({
+        res,
+        code: 200,
+        bodyResponse: {
+          message: "Documents gotten succesfull!",
+          data: documents,
+        },
+      });
+    } catch (error) {
+      this.fail(res, `${error}`);
+    }
+  };
+  readById = async (req: Express.Request, res: Express.Response) => {
+    try {
+      const documentFound = await this.entity.findById(req.params.id);
+
+      BaseController.jsonResponse({
+        res,
+        code: 200,
+        bodyResponse: {
+          message: "Document gotten succesfull!",
+          data: documentFound,
+        },
+      });
+    } catch (error) {
+      this.fail(res, `${error}`);
+    }
+  };
+  update = async (req: Express.Request, res: Express.Response) => {
+    try {
+      const documentUpdated = await this.entity.udpateOne(req.body);
+
+      BaseController.jsonResponse({
+        res,
+        code: 200,
+        bodyResponse: {
+          message: "Document updated succesfull!",
+          data: documentUpdated,
+        },
+      });
+    } catch (error) {
+      this.fail(res, `${error}`);
+    }
+  };
+  delete = async (req: Express.Request, res: Express.Response) => {
+    try {
+      const documentUpdated = await this.entity.deleteOne(req.params.id);
+
+      BaseController.jsonResponse({
+        res,
+        code: 200,
+        bodyResponse: {
+          message: "Document deleted succesfull!",
+          data: documentUpdated,
+        },
+      });
+    } catch (error) {
+      this.fail(res, `${error}`);
+    }
+  };
 }
 
 export default CrudController;

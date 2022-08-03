@@ -3,11 +3,17 @@ import { environmentValidator } from "../../helpers/environment-validator";
 import { app } from "../config/apps";
 import { executeDB } from "../config/database";
 
-(async () => {
+export const server = async () => {
   environmentValidator();
   dotenvConfig({
-    path: `./src/main/environments/.env.${process.env.NODE_ENV}`,
+    path: `./src/main/environments/.env.${
+      process.env.NODE_ENV || "development"
+    }`,
   });
   await executeDB();
-  app();
-})();
+  const frameworkApp = app();
+
+  return frameworkApp;
+};
+
+server();

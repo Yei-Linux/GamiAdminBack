@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1659425580537" clover="3.2.0">
-  <project timestamp="1659425580538" name="All files">
-    <metrics statements="166" coveredstatements="137" conditionals="22" coveredconditionals="3" methods="42" coveredmethods="24" elements="230" coveredelements="164" complexity="0" loc="166" ncloc="166" packages="7" files="22" classes="22"/>
+<coverage generated="1659504014267" clover="3.2.0">
+  <project timestamp="1659504014267" name="All files">
+    <metrics statements="242" coveredstatements="195" conditionals="30" coveredconditionals="5" methods="55" coveredmethods="35" elements="327" coveredelements="235" complexity="0" loc="242" ncloc="242" packages="11" files="31" classes="31"/>
     <package name="constants">
       <metrics statements="10" coveredstatements="3" conditionals="14" coveredconditionals="0" methods="7" coveredmethods="0"/>
       <file name="message.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\constants\message.ts">
@@ -109,6 +109,45 @@
         <line num="25" count="1" type="stmt"/>
       </file>
     </package>
+    <package name="helpers">
+      <metrics statements="13" coveredstatements="9" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Faker.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\helpers\Faker.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="environment-validator.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\helpers\environment-validator.ts">
+        <metrics statements="9" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="initial-data">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\initial-data\index.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="tagEntity.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\initial-data\tagEntity.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="userTypeEntity.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\initial-data\userTypeEntity.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="main.config">
       <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
       <file name="Logger.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\config\Logger.ts">
@@ -134,32 +173,108 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
       </file>
       <file name="index.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\config\apps\index.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="main.config.database">
+      <metrics statements="47" coveredstatements="33" conditionals="4" coveredconditionals="1" methods="10" coveredmethods="9"/>
+      <file name="MongooseStrategy.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\config\database\MongooseStrategy.ts">
+        <metrics statements="22" coveredstatements="10" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+      </file>
+      <file name="config.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\config\database\config.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\config\database\index.ts">
+        <metrics statements="23" coveredstatements="21" conditionals="3" coveredconditionals="1" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="44" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="main.server">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="server.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\main\server\server.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pojos">
-      <metrics statements="65" coveredstatements="46" conditionals="8" coveredconditionals="3" methods="20" coveredmethods="10"/>
+      <metrics statements="65" coveredstatements="46" conditionals="8" coveredconditionals="3" methods="20" coveredmethods="9"/>
       <file name="BaseController.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\pojos\BaseController.ts">
-        <metrics statements="13" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="13" coveredstatements="4" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="32" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="33" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
@@ -188,8 +303,8 @@
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
@@ -204,7 +319,7 @@
         <line num="19" count="1" type="stmt"/>
       </file>
       <file name="MongooseEntity.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\pojos\MongooseEntity.ts">
-        <metrics statements="19" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="3"/>
+        <metrics statements="19" coveredstatements="12" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="12" count="6" type="stmt"/>
@@ -215,7 +330,7 @@
         <line num="23" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
         <line num="31" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
@@ -252,7 +367,7 @@
       </file>
       <file name="index.ts" path="C:\Users\cesar.alvan\Documents\personalProjects\backend\gami-admin-back\src\routes\index.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
       </file>
     </package>
   </project>

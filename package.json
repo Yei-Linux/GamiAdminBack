@@ -7,7 +7,7 @@
     "serve": "cross-env NODE_ENV=$npm_config_stage ts-node ./src/main/server/server.ts",
     "mongo:windows:create-migration-file": "scripty",
     "mongo:windows:run-migration-file": "scripty",
-    "test": "jest --coverage"
+    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "author": "Yei Linux",
   "license": "ISC",
