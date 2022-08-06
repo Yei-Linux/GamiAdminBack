@@ -1,6 +1,8 @@
 import express from "express";
-import { TagRouter, UserTypeRouter } from "../../../routes";
+import { globalRouter } from "../../../pojos/GlobalRouter";
 import singletonLogger from "../Logger";
+import "../../../controllers/TagsController";
+import "../../../controllers/UserTypesController";
 
 export const expressApp = () => {
   try {
@@ -8,8 +10,7 @@ export const expressApp = () => {
     const jsonParser = express.json();
     app.use(jsonParser);
 
-    app.use("/tags", TagRouter);
-    app.use("/user-types", UserTypeRouter);
+    app.use(globalRouter);
 
     if (process.env.IS_TESTING !== "ok") {
       app.listen(process.env.SERVER_PORT, () => {
@@ -22,6 +23,7 @@ export const expressApp = () => {
 
     return app;
   } catch (error) {
+    console.log("test", error);
     singletonLogger.log({
       level: "error",
       message: "Failed on load express app!",

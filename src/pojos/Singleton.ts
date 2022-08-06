@@ -1,4 +1,4 @@
-class Singleton {
+abstract class Singleton {
   private static instance: any;
   constructor() {
     if (Singleton.instance) {

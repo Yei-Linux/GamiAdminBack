@@ -1,7 +1,8 @@
 import winston from "winston";
-import { Singleton } from "../../pojos";
 
-class Logger extends Singleton {
+type TSingletonLogger = winston.Logger;
+
+class Logger {
   private myCustomLevels = {
     /**
      * Logging levels
@@ -35,9 +36,16 @@ class Logger extends Singleton {
       debug: "orange",
     },
   };
+  private static instance: TSingletonLogger;
 
-  constructor() {
-    super();
+  constructor() {}
+
+  public static getInstance<T>(instance: TSingletonLogger): TSingletonLogger {
+    if (!Logger.instance) {
+      Logger.instance = instance;
+    }
+
+    return Logger.instance;
   }
 
   init(): winston.Logger {
@@ -80,6 +88,8 @@ class Logger extends Singleton {
   }
 }
 
-const singletonLogger = Logger.getInstance<winston.Logger>(new Logger().init());
+const singletonLogger = Logger.getInstance<TSingletonLogger>(
+  new Logger().init()
+);
 
 export default singletonLogger;

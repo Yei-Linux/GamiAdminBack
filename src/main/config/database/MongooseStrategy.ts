@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { catchError } from "../../../decorators";
 import {
   externalPostEntity,
   postEntity,
@@ -21,21 +22,17 @@ class MongooseStrategy
 {
   entities: Record<string, MongooseEntity> = {};
 
+  @catchError("Failed on stablish connection to mongodb!")
   async connect(
     url: string,
     options: Record<string, unknown>
   ): Promise<TMongooseConnection> {
-    try {
-      await mongoose.connect(url, options);
+    await mongoose.connect(url, options);
 
-      singletonLogger.log({
-        level: "info",
-        message: `Connection done succesfull!`,
-      });
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed on stablish connection to mongodb!");
-    }
+    singletonLogger.log({
+      level: "info",
+      message: `Connection done succesfull!`,
+    });
   }
 
   runSchemas() {
@@ -54,22 +51,18 @@ class MongooseStrategy
     }
   }
 
+  @catchError("Failed running migrations")
   async runMigrations(migrations: TMongooseMigrations) {
-    try {
-      for (const [key, entity] of Object.entries(this.entities)) {
-        const migrationFound = migrations?.[key];
-        if (!migrationFound) continue;
-        const dataAdded = await entity?.updateMany(migrationFound);
-      }
-
-      singletonLogger.log({
-        level: "info",
-        message: `Migrations executed successfull!`,
-      });
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed running migrations");
+    for (const [key, entity] of Object.entries(this.entities)) {
+      const migrationFound = migrations?.[key];
+      if (!migrationFound) continue;
+      const dataAdded = await entity?.updateMany(migrationFound);
     }
+
+    singletonLogger.log({
+      level: "info",
+      message: `Migrations executed successfull!`,
+    });
   }
 }
 

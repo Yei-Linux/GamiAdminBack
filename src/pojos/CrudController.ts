@@ -1,13 +1,14 @@
 import { BaseController } from "./BaseController";
 import MongooseEntity from "./MongooseEntity";
 import Express from "express";
+import { Delete, Get, Post, Put } from "../decorators/router-binder";
 
 export interface ICrudController {
-  create: (req: Express.Request, res: Express.Response) => void;
-  read: (req: Express.Request, res: Express.Response) => void;
-  readById: (req: Express.Request, res: Express.Response) => void;
-  update: (req: Express.Request, res: Express.Response) => void;
-  delete: (req: Express.Request, res: Express.Response) => void;
+  create?: (req: Express.Request, res: Express.Response) => void;
+  read?: (req: Express.Request, res: Express.Response) => void;
+  readById?: (req: Express.Request, res: Express.Response) => void;
+  update?: (req: Express.Request, res: Express.Response) => void;
+  delete?: (req: Express.Request, res: Express.Response) => void;
 }
 
 class CrudController extends BaseController implements ICrudController {
@@ -18,7 +19,8 @@ class CrudController extends BaseController implements ICrudController {
     this.entity = entity;
   }
 
-  create = async (req: Express.Request, res: Express.Response) => {
+  @Post("/")
+  async create(req: Express.Request, res: Express.Response) {
     try {
       const documentSaved = await this.entity.save(req.body);
 
@@ -33,8 +35,10 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, "Document could not be saved succesfull");
     }
-  };
-  read = async (req: Express.Request, res: Express.Response) => {
+  }
+
+  @Get("/")
+  async read(req: Express.Request, res: Express.Response) {
     try {
       const documents = await this.entity.findAll();
 
@@ -49,8 +53,10 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, `${error}`);
     }
-  };
-  readById = async (req: Express.Request, res: Express.Response) => {
+  }
+
+  @Get("/:id")
+  async readById(req: Express.Request, res: Express.Response) {
     try {
       const documentFound = await this.entity.findById(req.params.id);
 
@@ -65,8 +71,10 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, `${error}`);
     }
-  };
-  update = async (req: Express.Request, res: Express.Response) => {
+  }
+
+  @Put("/")
+  async update(req: Express.Request, res: Express.Response) {
     try {
       const documentUpdated = await this.entity.udpateOne(req.body);
 
@@ -81,8 +89,10 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, `${error}`);
     }
-  };
-  delete = async (req: Express.Request, res: Express.Response) => {
+  }
+
+  @Delete("/:id")
+  async delete(req: Express.Request, res: Express.Response) {
     try {
       const documentUpdated = await this.entity.deleteOne(req.params.id);
 
@@ -97,7 +107,7 @@ class CrudController extends BaseController implements ICrudController {
     } catch (error) {
       this.fail(res, `${error}`);
     }
-  };
+  }
 }
 
 export default CrudController;
